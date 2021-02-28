@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+//https://material-ui.com/components/material-icons/
+import "./App.css";
+import React from "react";
+import Sidebar from "./Sidebar";
+import Chat from "./Chat";
+import { selectUser } from "./features/userSlice";
+import { useSelector } from "react-redux";
+import Login from "./Login";
+// import {Fragement} from 'react';
 
 function App() {
+  const user = useSelector(selectUser);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {user ? (
+        <div>
+          <Sidebar />
+          <Chat />
+        </div>
+      ) : (
+        <Login />
+        // <h2>I am login</h2>
+      )}
     </div>
   );
 }
