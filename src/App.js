@@ -1,26 +1,45 @@
-//https://material-ui.com/components/material-icons/
-import "./App.css";
-import React from "react";
-import Sidebar from "./Sidebar";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Chat from "./Chat";
-import { selectUser } from "./features/userSlice";
-import { useSelector } from "react-redux";
+import Sidebar from "./Sidebar";
 import Login from "./Login";
-// import {Fragement} from 'react';
+import { login, logout } from "./features/userSlice";
+import { selectUser } from "./features/userSlice";
+import { auth } from "./firebase";
+import "./App.css";
 
 function App() {
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
+
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log("auth user is", authUser);
+      // debugger
+      if (authUser) {
+        dispatch(login({
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email: authUser.email,
+            displayName: authUser.displayName,
+          })
+        );
+      } else {
+         dispatch(logout());
+      }
+    });
+  }, [dispatch]);
 
   return (
     <div className="app">
       {user ? (
-        <div>
+        <>
           <Sidebar />
           <Chat />
-        </div>
+        </>
       ) : (
         <Login />
-        // <h2>I am login</h2>
       )}
     </div>
   );
