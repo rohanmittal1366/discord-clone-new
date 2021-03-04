@@ -20,15 +20,14 @@ function Sidebar() {
   const [channels, setChannels] = useState([]);
 
   useEffect(() => {
-    db.collection("channels")
-      .onSnapshot((snapshot) => {
-        setChannels(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            channel: doc.data(),
-          }))
-        );
-      });
+    db.collection("channels").onSnapshot((snapshot) => {
+      setChannels(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          channel: doc.data(),
+        }))
+      );
+    });
   }, []);
 
   const handleAddChannel = () => {
