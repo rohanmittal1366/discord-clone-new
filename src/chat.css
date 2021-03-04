@@ -43,6 +43,17 @@
 
 }
 
+
+.chat__messages::-webkit-scrollbar {
+  display: none;
+ 
+}
+
 .chat__messages{
-  flex : 1;
+ 
+  flex:1;
+  overflow :scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
 }

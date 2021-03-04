@@ -14,6 +14,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice";
 import db, { auth } from "./firebase";
+import firebase from 'firebase';
 
 function Sidebar() {
   const user = useSelector(selectUser);
@@ -35,7 +36,7 @@ function Sidebar() {
     if (channelName) {
       db.collection("channels").add({
         channelName: channelName,
-        // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
     }
   };
@@ -78,7 +79,8 @@ function Sidebar() {
       </div>
 
       <div className="sidebar__profile">
-        <Avatar src={user.photo} onClick={() => auth.signOut()} />
+        <Avatar className="sidebar__avatarIcon"  src={user.photo} onClick={() => auth.signOut()} />
+        <span className="sidebar__hoverText">Click to Logout</span>
         <div className="sidebar__profileinfo">
           <h3>{user.displayName}</h3>
           <p>{user.uid.substring(0, 5)}</p>

@@ -14,7 +14,6 @@ function Login() {
 
   return (
     <div className="login">
-      <h2>I am the login page</h2>
       <div className="login__logo">
         <img src={IMG} alt="logo" />
       </div>
