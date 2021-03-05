@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+
+Click on this [https://discord-clone-7b451.web.app](https://discord-clone-7b451.web.app) to open discord server
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
